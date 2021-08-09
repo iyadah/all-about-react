@@ -1,12 +1,35 @@
 import './App.css';
 import Expenses from './components/Expenses';
+import ExpenseForm from './components/ExpenseForm';
+import { useState } from 'react';
 
 function App() {
+  const expenses = [
+    {id: 1, title: "Car insurance", amount: 223.3, date: new Date(2001, 2, 28)},
+    {id: 2, title: "Groceries for office", amount: 33.7, date: new Date(2021, 4, 3)},
+    {id: 3, title: "Entertainment for the kids", amount: 100.73, date: new Date(2021, 2, 21)}
+
+  ]
+  const [expense , updateExpenses] = useState(expenses);
+
+
+  const submitExpensesHandler = (expensesData) => {
+    const enteredExpenses = {
+      ...expensesData,
+      id: Math.random()
+    }
+    expenses.push(enteredExpenses);
+    
+    updateExpenses(expenses);
+    
+  }
 
   return (
     <div className="App">
       <h2>Lets start</h2>
-      <Expenses />
+      <ExpenseForm onSubmitExpesnes={submitExpensesHandler} />
+      <Expenses expenses={expenses} />
+
     </div>
   );
 }

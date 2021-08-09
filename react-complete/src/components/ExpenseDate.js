@@ -1,17 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 
-const ExpenseDate = props => {
+const ExpenseDate = ({date}) => {
     return (
         <div>
-        {Intl.DateTimeFormat('en-US', {year: '2-digit', month:'2-digit', day:'2-digit'}).format(props.date) }
+        {Intl.DateTimeFormat('en-US', {year: '2-digit', month:'2-digit', day:'2-digit'}).format(date) }
 
         </div>
     )
 }
 
-ExpenseDate.propTypes = {
-
-}
 
 export default ExpenseDate
