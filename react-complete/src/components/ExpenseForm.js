@@ -1,13 +1,14 @@
 import { Children, useState } from "react";
 import Expenses from "./Expenses";
 import ExpenseItem from "./ExpenseItem";
+import nextId from "react-id-generator";
 
 const ExpenseForm = props => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
     const [expenses, setExpensesDate] = useState(props.expenses);
-
+    console.log(expenses);
     const titleChangeHandler = (event) =>{
         setEnteredTitle(event.target.value);
 
@@ -24,16 +25,12 @@ const ExpenseForm = props => {
     const submitHandler = (event) =>{
         event.preventDefault();
         const expenseData = {
+            id: nextId(),
             title: enteredTitle,
             amount: enteredAmount,
             date: new Date(enteredDate)
         }
-
-       // props.expenses.push(expenseData);
         setExpensesDate([...expenses, expenseData]);
-        // setEnteredDate('');
-        // setEnteredTitle('');
-        // setEnteredAmount('');
     }
 
     return (
