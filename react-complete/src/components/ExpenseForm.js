@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { Children, useState } from "react";
+import Expenses from "./Expenses";
+import ExpenseItem from "./ExpenseItem";
 
 const ExpenseForm = props => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
+    const [expenses, setExpensesDate] = useState(props.expenses);
 
     const titleChangeHandler = (event) =>{
         setEnteredTitle(event.target.value);
@@ -26,11 +29,11 @@ const ExpenseForm = props => {
             date: new Date(enteredDate)
         }
 
-        props.onSubmitExpesnes(expenseData);
-
-        setEnteredDate('');
-        setEnteredTitle('');
-        setEnteredAmount('');
+       // props.expenses.push(expenseData);
+        setExpensesDate([...expenses, expenseData]);
+        // setEnteredDate('');
+        // setEnteredTitle('');
+        // setEnteredAmount('');
     }
 
     return (
@@ -41,6 +44,9 @@ const ExpenseForm = props => {
                 <div><input type="date" value={enteredDate} onChange={dateChangeHandler}/></div><br />
                 <button type="submit">Submit</button>
             </form>
+
+            {expenses ? expenses.map(expense=><ExpenseItem expense={expense}/>): expenses.map(expense=><ExpenseItem expense={expense}/>) }
+
         </div>
     )
 }

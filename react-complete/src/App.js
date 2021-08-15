@@ -1,7 +1,6 @@
 import './App.css';
 import Expenses from './components/Expenses';
 import ExpenseForm from './components/ExpenseForm';
-import { useState } from 'react';
 
 function App() {
     const expenses = [
@@ -15,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <h2>Lets start</h2>
-      <Expenses expenses={expenses} />
+      <ExpenseForm expenses={expenses} />
 
     </div>
   );
