@@ -1,8 +1,10 @@
 import React from "react";
 import faker from "faker";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Comments = () => {
-  const comments = [
+  var comments = [
     {
       image:
         "https://res.cloudinary.com/dkbror80w/image/upload/v1629697987/img/1521523824236_hxwpex.jpg",
@@ -25,6 +27,7 @@ const Comments = () => {
       comment: "fake comment",
     },
   ];
+
   return comments.map((comment) => (
     <div className="bg-gray-100 p-3 flex items-center justify-left w-screen">
       <div className="bg-white border shadow-sm px-4 py-3 rounded-lg max-w-lg">
