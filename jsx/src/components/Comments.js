@@ -1,5 +1,5 @@
 import React from "react";
-import { isCompositeComponent } from "react-dom/cjs/react-dom-test-utils.production.min";
+import faker from "faker";
 
 const Comments = () => {
   const comments = [
@@ -19,6 +19,11 @@ const Comments = () => {
       date: "10/2/2020",
       comment: "How come?",
     },
+    {
+      title: "faker at fake",
+      date: "10/2/2029",
+      comment: "fake comment",
+    },
   ];
   return comments.map((comment) => (
     <div className="bg-gray-100 p-3 flex items-center justify-left w-screen">
@@ -27,13 +32,18 @@ const Comments = () => {
           <img
             className="h-12 w-12 rounded-full"
             src={
-              comment.image +
-              "?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              comment.image
+                ? comment.image +
+                  "?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                : faker.image.avatar() +
+                  "?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
             }
           />
           <div className="ml-2">
             <div className="text-sm ">
-              <span className="font-semibold">{comment.name}</span>
+              <span className="font-semibold">
+                {comment.name ? comment.name : faker.name.findName()}
+              </span>
               <span className="text-gray-500"> • 1st</span>
             </div>
             <div className="text-gray-500 text-xs ">{comment.title}</div>
