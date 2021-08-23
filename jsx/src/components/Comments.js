@@ -1,10 +1,16 @@
 import React from "react";
 import faker from "faker";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-const Comments = () => {
-  var comments = [
+import { connect } from "react-redux";
+import { useState, useEffect } from "react";
+import { getComments } from "../actions/comment";
+
+const Comments = ({ getComments, comment: { comments, loading } }) => {
+  useEffect(() => {
+    getComments();
+  }, [getComments]);
+  var comments2 = [
     {
       image:
         "https://res.cloudinary.com/dkbror80w/image/upload/v1629697987/img/1521523824236_hxwpex.jpg",
@@ -91,4 +97,13 @@ const Comments = () => {
   ));
 };
 
-export default Comments;
+Comments.propTypes = {
+  getComments: PropTypes.func.isRequired,
+  comment: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  comment: state.comment,
+});
+
+export default connect(mapStateToProps, { getComments })(Comments);

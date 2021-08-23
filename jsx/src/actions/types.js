@@ -1,0 +1,2 @@
+export const GET_COMMENTS = "GET_COMMENTS";
+export const COMMENT_ERROR = "COMMENT_ERROR";
