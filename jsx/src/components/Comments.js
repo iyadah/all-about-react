@@ -3,39 +3,42 @@ import faker from "faker";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { getComments } from "../actions/comment";
 
 const Comments = ({ getComments, comment: { comments, loading } }) => {
   useEffect(() => {
     getComments();
   }, [getComments]);
-  var comments2 = [
-    {
-      image:
-        "https://res.cloudinary.com/dkbror80w/image/upload/v1629697987/img/1521523824236_hxwpex.jpg",
-      name: "iyad a.",
-      title: "SE at Ureed",
-      date: "10/10/2010",
-      comment: "Bullshit, what you are saying doesn't make sense at all",
-    },
-    {
-      image:
-        "https://res.cloudinary.com/dkbror80w/image/upload/v1629699273/img/most-beautiful-actress-Odette-Annable-fillgapnews-1_wprnjk.jpg",
-      name: "Odette Annable",
-      title: "Actress at TV",
-      date: "10/2/2020",
-      comment: "How come?",
-    },
-    {
-      title: "faker at fake",
-      date: "10/2/2029",
-      comment: "fake comment",
-    },
-  ];
+  // var comments = [
+  //   {
+  //     image:
+  //       "https://res.cloudinary.com/dkbror80w/image/upload/v1629697987/img/1521523824236_hxwpex.jpg",
+  //     name: "iyad a.",
+  //     title: "SE at Ureed",
+  //     date: "10/10/2010",
+  //     comment: "Bullshit, what you are saying doesn't make sense at all",
+  //   },
+  //   {
+  //     image:
+  //       "https://res.cloudinary.com/dkbror80w/image/upload/v1629699273/img/most-beautiful-actress-Odette-Annable-fillgapnews-1_wprnjk.jpg",
+  //     name: "Odette Annable",
+  //     title: "Actress at TV",
+  //     date: "10/2/2020",
+  //     comment: "How come?",
+  //   },
+  //   {
+  //     title: "faker at fake",
+  //     date: "10/2/2029",
+  //     comment: "fake comment",
+  //   },
+  // ];
 
   return comments.map((comment) => (
-    <div className="bg-gray-100 p-3 flex items-center justify-left w-screen">
+    <div
+      className="bg-gray-100 p-3 flex items-center justify-left w-screen"
+      key={comment._id}
+    >
       <div className="bg-white border shadow-sm px-4 py-3 rounded-lg max-w-lg">
         <div className="flex items-center">
           <img
@@ -47,6 +50,7 @@ const Comments = ({ getComments, comment: { comments, loading } }) => {
                 : faker.image.avatar() +
                   "?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
             }
+            alt="avatar"
           />
           <div className="ml-2">
             <div className="text-sm ">
@@ -59,12 +63,11 @@ const Comments = ({ getComments, comment: { comments, loading } }) => {
             <div className="text-gray-500 text-xs flex">
               <span className="inline-block">{comment.date} • Edited • </span>
               <svg
-                className="inline-block ml-1 fill-current"
+                className="inline-block ml-1 fill-current mercado-match"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
                 data-supported-dps="16x16"
                 fill="currentColor"
-                className="mercado-match"
                 width="16"
                 height="16"
                 focusable="false"
@@ -81,14 +84,17 @@ const Comments = ({ getComments, comment: { comments, loading } }) => {
           <img
             className="mr-0.5"
             src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"
+            alt=""
           />
           <img
             className="mr-0.5"
             src="https://static-exp1.licdn.com/sc/h/5thsbmikm6a8uov24ygwd914f"
+            alt=""
           />
           <img
             className="mr-0.5"
             src="https://static-exp1.licdn.com/sc/h/7fx9nkd7mx8avdpqm5hqcbi97"
+            alt=""
           />
           <span className="ml-1">47 • 26 comments</span>
         </div>
