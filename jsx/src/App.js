@@ -11,6 +11,7 @@ function App() {
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
+    console.log(imageSrc);
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
   return (
@@ -19,7 +20,7 @@ function App() {
         Comments App
         <Comments />
         <hr />
-        <Webcam ref={webcamRef} />
+        <Webcam ref={webcamRef} height="200" width="200" />
         <hr />
         <button onClick={capture}>Capture photo</button>
         <hr />
