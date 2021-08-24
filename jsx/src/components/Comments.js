@@ -1,5 +1,5 @@
 import React from "react";
-import faker from "faker";
+
 import PropTypes from "prop-types";
 import Comment from "./Comment";
 
