@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import faker from "faker";
 
 const Comment = ({ comment }) => {

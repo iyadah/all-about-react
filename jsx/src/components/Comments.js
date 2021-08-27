@@ -2,40 +2,33 @@ import React from "react";
 
 import PropTypes from "prop-types";
 import Comment from "./Comment";
-
+import Pusher from "pusher-js";
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getComments } from "../actions/comment";
 
 const Comments = ({ getComments, comment: { comments, loading } }) => {
+  const [channelContent, setChannelContent] = useState("channel content");
+
   useEffect(() => {
+    const pusher = new Pusher("50620317c3650858972b", {
+      cluster: "ap2",
+      encrypted: true,
+    });
+    const channel = pusher.subscribe("tests");
+    channel.bind("comment", (data) => {
+      setChannelContent(data.comment);
+    });
     getComments();
   }, [getComments]);
-  // var comments = [
-  //   {
-  //     image:
-  //       "https://res.cloudinary.com/dkbror80w/image/upload/v1629697987/img/1521523824236_hxwpex.jpg",
-  //     name: "iyad a.",
-  //     title: "SE at Ureed",
-  //     date: "10/10/2010",
-  //     comment: "Bullshit, what you are saying doesn't make sense at all",
-  //   },
-  //   {
-  //     image:
-  //       "https://res.cloudinary.com/dkbror80w/image/upload/v1629699273/img/most-beautiful-actress-Odette-Annable-fillgapnews-1_wprnjk.jpg",
-  //     name: "Odette Annable",
-  //     title: "Actress at TV",
-  //     date: "10/2/2020",
-  //     comment: "How come?",
-  //   },
-  //   {
-  //     title: "faker at fake",
-  //     date: "10/2/2029",
-  //     comment: "fake comment",
-  //   },
-  // ];
-
-  return comments.map((comment) => <Comment comment={comment} />);
+  return (
+    <div>
+      <h1>{channelContent}</h1>
+      {comments.map((comment) => (
+        <Comment comment={comment} />
+      ))}
+    </div>
+  );
 };
 
 Comments.propTypes = {
